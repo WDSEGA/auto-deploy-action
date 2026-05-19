@@ -1,0 +1,9 @@
+{
+  "name": "auto-deploy-action",
+  "version": "1.0.0",
+  "description": "One-click deployment to GitHub Pages",
+  "main": "src/index.js",
+  "dependencies": {
+    "@actions/core": "^1.10.0"
+  }
+}

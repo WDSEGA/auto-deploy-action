@@ -1,0 +1,42 @@
+name: 'Auto Deploy to GitHub Pages'
+description: 'One-click deployment of static sites to GitHub Pages with Jekyll support, asset optimization, and SEO enhancements. Perfect for blogs, documentation sites, and portfolios.'
+author: 'WDSEGA'
+
+branding:
+  icon: 'rocket'
+  color: 'blue'
+
+inputs:
+  github-token:
+    description: 'GitHub Personal Access Token with repo permissions'
+    required: true
+  source-dir:
+    description: 'Directory containing your site source files (default: .)'
+    required: false
+    default: '.'
+  jekyll-build:
+    description: 'Enable Jekyll build (default: true)'
+    required: false
+    default: 'true'
+  cname:
+    description: 'Custom domain name (optional)'
+    required: false
+    default: ''
+  compress-images:
+    description: 'Compress images before deployment (default: true)'
+    required: false
+    default: 'true'
+  minify-html:
+    description: 'Minify HTML output (default: true)'
+    required: false
+    default: 'true'
+
+outputs:
+  site-url:
+    description: 'The URL of the deployed site'
+  deploy-status:
+    description: 'Deployment status (success/failed)'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
