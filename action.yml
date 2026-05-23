@@ -8,34 +8,44 @@ branding:
 
 inputs:
   github-token:
-    description: 'GitHub Personal Access Token with repo permissions'
+    description: 'GitHub token with repo permissions (GITHUB_TOKEN or PAT)'
     required: true
   source-dir:
     description: 'Directory containing your site source files (default: .)'
     required: false
     default: '.'
   jekyll-build:
-    description: 'Enable Jekyll build (default: true)'
+    description: 'Enable Jekyll build when Gemfile or _config.yml is detected (default: true)'
     required: false
     default: 'true'
   cname:
-    description: 'Custom domain name (optional)'
+    description: 'Custom domain name (optional, creates CNAME file in deployed site)'
     required: false
     default: ''
   compress-images:
-    description: 'Compress images before deployment (default: true)'
+    description: 'Compress images before deployment (default: false, TODO: not yet implemented)'
     required: false
-    default: 'true'
+    default: 'false'
   minify-html:
-    description: 'Minify HTML output (default: true)'
+    description: 'Minify HTML output (default: false, TODO: not yet implemented)'
     required: false
-    default: 'true'
+    default: 'false'
+  deploy-branch:
+    description: 'Target branch for deployment (default: gh-pages)'
+    required: false
+    default: 'gh-pages'
+  build-dir:
+    description: 'Output directory for Jekyll build (default: _site)'
+    required: false
+    default: '_site'
 
 outputs:
   site-url:
     description: 'The URL of the deployed site'
+    value: ${{ steps.deploy.outputs.site-url }}
   deploy-status:
     description: 'Deployment status (success/failed)'
+    value: ${{ steps.deploy.outputs.status }}
 
 runs:
   using: 'node20'
